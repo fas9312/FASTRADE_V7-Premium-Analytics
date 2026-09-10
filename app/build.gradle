@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'it.fastrade.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'it.fastrade.app'
+        minSdk 26
+        targetSdk 35
+        versionCode 7
+        versionName '2.0'
+    }
+}
