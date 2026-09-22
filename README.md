@@ -17,3 +17,9 @@ Versione basata sulla V6 stabile, con interfaccia ridisegnata in stile trading/f
 - Intervalli 7G / 1M / 3M / 1A mantenuti
 
 Database e funzioni della V6 restano compatibili.
+
+## Novità V8 — Controllo rischio e gestione dati
+- Avviso obbligatorio al raggiungimento di 3 loss consecutive, con invito a fare una pausa di 10 minuti
+- Azzeramento completo di tutti i dati con doppia conferma
+- Importazione ed esportazione backup separate e chiaramente identificate
+- Esportazione delle operazioni in un file Excel `.xls`
