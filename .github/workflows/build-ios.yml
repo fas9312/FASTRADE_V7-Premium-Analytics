@@ -1,0 +1,33 @@
+name: Build iOS V7
+
+on:
+  pull_request:
+    paths:
+      - 'ios/**'
+      - '.github/workflows/build-ios.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Normalize Swift numeric literals
+        working-directory: ios
+        run: |
+          perl -0pi -e 's/opacity\(\.35\)/opacity(0.35)/g; s/opacity\(\.12\)/opacity(0.12)/g; s/opacity\(\.08\)/opacity(0.08)/g' FasTradeV7/ContentView.swift
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+      - name: Build for iOS Simulator
+        working-directory: ios
+        run: |
+          xcodebuild \
+            -project FasTradeV7.xcodeproj \
+            -scheme FasTradeV7 \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build

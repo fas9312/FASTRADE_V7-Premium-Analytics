@@ -1,0 +1,24 @@
+name: FasTradeV7
+options:
+  bundleIdPrefix: it.fastrade
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: 17.0
+targets:
+  FasTradeV7:
+    type: application
+    platform: iOS
+    sources:
+      - path: FasTradeV7
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: it.fastrade.v7
+        PRODUCT_NAME: FasTrade
+        TARGETED_DEVICE_FAMILY: 1
+        SWIFT_VERSION: 5.0
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: FasTrade
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+    scheme:
+      testTargets: []
