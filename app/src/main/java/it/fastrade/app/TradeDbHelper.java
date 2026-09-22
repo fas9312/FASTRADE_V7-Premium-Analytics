@@ -64,6 +64,19 @@ public class TradeDbHelper extends SQLiteOpenHelper {
     }
     public void deleteOperation(long id){ getWritableDatabase().delete("operations","id=?",new String[]{String.valueOf(id)}); }
 
+    public void resetAllData() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.beginTransaction();
+        try {
+            db.delete("operations",null,null);
+            db.delete("strategies",null,null);
+            db.execSQL("DELETE FROM sqlite_sequence WHERE name IN ('operations','strategies')");
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
     public List<Operation> allOperations() {
         ArrayList<Operation> list=new ArrayList<>();
         Cursor c=getReadableDatabase().rawQuery("SELECT id,date,match_name,market,minute,tranche,stake_pct,stake_eur,result,rating,notes,sport,market_type,strategy,odds FROM operations ORDER BY id DESC",null);
